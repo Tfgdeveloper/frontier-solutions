@@ -1,0 +1,73 @@
+@import "tailwindcss"; /* Or however you are importing tailwind */
+
+/* 1. LIGHT MODE COLORS (Default) */
+@font-face {
+  font-family: "Oblik Bold";
+  src: url("./fonts/Oblik_Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+Then update you
+/* 3. APPLY TO BODY */
+body {
+  background: black;
+  margin: 0;
+  font-family: "Inter Tight", sans-serif;
+}
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: "Oblik Bold", sans-serif;
+  }
+
+.glass {
+  background: rgba(0, 0, 0, 0.05);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 200px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.01),
+    inset 0 0 20px 10px rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.8),
+    transparent
+  );
+}
+
+.glass::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1px;
+  height: 100%;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8),
+    transparent,
+    rgba(255, 255, 255, 0.3)
+  );
+}
+
