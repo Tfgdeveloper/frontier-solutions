@@ -10,6 +10,8 @@ import TestimonialSection from '../components/sections/TestimonialSection'
 import PricingSection from '../components/sections/PricingSection'
 import FAQSection from '../components/sections/FAQSection'
 import Footer from '../components/layout/Footer'
+import UniversalPageHero from '../components/sections/UniversalPageHero'
+import PageHero from '../components/sections/UniversalPageHero'
 
 const Home = () => {
     const [dark, setDark] = useState(false);
@@ -17,7 +19,7 @@ const Home = () => {
   return (
     <div>
       <Header dark={dark} toggleDark={() => setDark(!dark)} />
-      <HeroSection dark={dark}/>
+      <HeroSection dark={dark}/>  
       <LogoLoop dark={dark}/>
       <ServicesBento dark={dark}/>
       <CaseStudies dark={dark}/>

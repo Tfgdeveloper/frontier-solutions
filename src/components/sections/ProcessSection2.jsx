@@ -3,13 +3,13 @@ import { motion, useScroll, useSpring, useTransform, useInView } from "framer-mo
 import { Check } from "lucide-react";
 
 const steps = [
-  { id: "01", title: "Discovery", desc: "Workshops, audits and stakeholder interviews to map the problem and the opportunity." },
-  { id: "02", title: "Define", desc: "Strategy, scope, success metrics. We commit to a finish before we commit to tools." },
-  { id: "03", title: "Design", desc: "Prototypes, design systems and copy. Validated with users at every milestone." },
-  { id: "04", title: "Build", desc: "Two-week sprints, demos every Friday. Production-quality code from week one." },
-  { id: "05", title: "Launch", desc: "Migration, training, content. We treat go-live as the start of the relationship, not the end." },
-  { id: "06", title: "Iterate", desc: "Analytics, experiments, ongoing roadmap. We grow with you, quarter after quarter." },
-  { id: "07", title: "Live", desc: "Production & beyond. From spinoff to launch in 12 weeks. Then we keep shipping." },
+  { id: "01", title: "Craft is the strategy", desc: "In a market full of generic output, doing the work better is the cheapest moat available." },
+  { id: "02", title: "Show, don't tell", desc: "We demo in week one. Working software is the only artifact we trust to make decisions on." },
+  { id: "03", title: "Stay small, stay senior", desc: "Small teams of senior people beat large teams of mixed seniority every time. We staff accordingly." },
+  { id: "04", title: "Boring tech, bold ideas", desc: "Postgres, server-rendered HTML, REST. We save the novelty for the parts the user actually sees." },
+  { id: "05", title: "Long relationships", desc: "Most of our 2026 revenue comes from clients we first shipped for in 2020 or earlier. Stay long enough to compound." },
+  { id: "06", title: "Want to work with us?", desc: "Tell us what you're building. We come back within a working day." },
+  
 ];
 
 const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
@@ -129,7 +129,7 @@ const StepCard = ({ step, index, dark }) => {
   );
 };
 
-export default function ProcessTimeline({ dark }) {
+export default function ProcessTimeline2({ dark }) {
   const containerRef = useRef(null);
 
   // Scroll progress for the filling line + the traveling marker
