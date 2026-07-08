@@ -54,11 +54,9 @@ const itemVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-export default function PartnerStack({ dark }) {
+export default function PartnerStack() {
   return (
-    <section className={`py-32 px-6 transition-colors duration-1000 ${
-      dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
-    }`}>
+    <section className="py-32 px-6 transition-colors duration-1000 bg-transprent">
       <div className="max-w-7xl mx-auto text-center">
         
         {/* ── HEADER ── */}
@@ -66,9 +64,7 @@ export default function PartnerStack({ dark }) {
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`text-2xl md:text-3xl font-medium tracking-tight mb-20 max-w-4xl mx-auto leading-relaxed ${
-            dark ? "text-white/90" : "text-[#262262]"
-          }`}
+          className="text-2xl md:text-3xl font-medium tracking-tight mb-20 max-w-4xl mx-auto leading-relaxed text-white/90"
         >
           Frontier Solutions is working with industry-leading <br className="hidden md:block" /> 
           technology and implementation partners
@@ -87,27 +83,19 @@ export default function PartnerStack({ dark }) {
               key={partner.name}
               variants={itemVariants}
               whileHover={{ y: -3, scale: 1.02 }}
-              className={`flex items-center gap-3 px-4 py-2 border rounded-xl transition-all duration-300 shadow-sm group ${
-                dark 
-                  ? "bg-[#161618] border-white/5 hover:border-orange-500/50" 
-                  : "bg-white border-gray-200 hover:border-[#262262]/30"
-              }`}
+              className="flex items-center gap-3 px-4 py-2 border rounded-xl transition-all duration-300 shadow-sm group bg-[#000]/50 border-white/5 hover:border-orange-500/50"
             >
               {/* Logo Box */}
-              <div className={`p-1.5 rounded-lg flex items-center justify-center transition-colors ${
-                dark ? "bg-white/5 group-hover:bg-white/10" : "bg-gray-50 group-hover:bg-gray-100"
-              }`}>
+              <div className="p-1.5 rounded-lg flex items-center justify-center transition-colors bg-white/5 group-hover:bg-white/10">
                 <partner.Icon 
                   size={18} 
-                  style={{ color: dark ? "#fff" : "#333" }} 
+                  style={{ color: "#fff" }} 
                   className="transition-colors group-hover:text-orange-500"
                 />
               </div>
 
               {/* Text */}
-              <span className={`text-sm md:text-base font-semibold transition-colors ${
-                dark ? "text-white/80 group-hover:text-white" : "text-gray-800 group-hover:text-black"
-              }`}>
+              <span className="text-sm md:text-base font-semibold transition-colors text-white/80 group-hover:text-white">
                 {partner.name}
               </span>
             </motion.div>
@@ -115,7 +103,7 @@ export default function PartnerStack({ dark }) {
         </motion.div>
 
         {/* ── FOOTER DECOR ── */}
-        <div className={`mt-24 h-[1px] w-full max-w-xs mx-auto ${dark ? "bg-white/10" : "bg-black/5"}`} />
+        <div className="mt-24 h-[1px] w-full max-w-xs mx-auto bg-white/10" />
       </div>
     </section>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Target, Eye, ArrowUpRight } from "lucide-react";
 
-const MissionVision = ({ dark }) => {
+const MissionVision = () => {
   const content = [
     {
       id: "01",
@@ -25,9 +25,7 @@ const MissionVision = ({ dark }) => {
   ];
 
   return (
-    <section className={`py-40 px-6 md:px-12 transition-colors duration-1000 relative overflow-hidden ${
-      dark ? "bg-[#0A0A0B]" : "bg-[#F4F4F5]"
-    }`}>
+    <section className="py-40 px-6 md:px-12 transition-colors duration-1000 relative overflow-hidden bg-transparent">
 
       {/* ── BACKGROUND KINETICS ── */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay">
@@ -41,11 +39,11 @@ const MissionVision = ({ dark }) => {
           <motion.span
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
-            className={`text-[10px] uppercase tracking-[0.6em] font-black mb-6 ${dark ? "text-orange-500" : "text-[#F06A22]"}`}
+            className="text-[10px] uppercase tracking-[0.6em] font-black mb-6 text-orange-500"
           >
             Philosophy
           </motion.span>
-          <h2 className={`text-5xl md:text-[4rem] font-bold tracking-tight mb-6 ${dark ? "text-white" : "text-[#262262]"}`}>
+          <h2 className="text-5xl md:text-[4rem] font-bold tracking-tight mb-6 text-white">
             Purpose <br /> <span className="text-[#F06A22]">&amp; Intent.</span>
           </h2>
         </div>
@@ -59,16 +57,8 @@ const MissionVision = ({ dark }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: index * 0.2, duration: 0.8 }}
-              className={`group relative p-6 md:p-10 rounded-[40px] border overflow-hidden transition-all duration-700 ${
-                dark
-                  ? "bg-white/5 border-white/5 hover:border-white/10"
-                  : "bg-white border-black/5 shadow-xl shadow-transparent"
-              } ${
-                item.featured
-                  ? dark
-                    ? "border-white/10"
-                    : "border-[#F06A22]/20 shadow-orange-500/5"
-                  : !dark && "hover:border-[#F06A22]/20 hover:shadow-orange-500/5"
+              className={`group relative p-6 md:p-10 rounded-[40px] border overflow-hidden transition-all duration-700 bg-white/5 border-white/5 hover:border-white/10 ${
+                item.featured ? "border-white/10" : ""
               }`}
             >
               {/* Color wash — permanently on for the featured card, hover-triggered for the other */}
@@ -86,10 +76,10 @@ const MissionVision = ({ dark }) => {
                     </div>
                     
                   </div>
-                  <h3 className={`text-4xl md:text-5xl font-black tracking-tighter mb-4 leading-none ${dark ? "text-white" : "text-[#262262]"}`}>
+                  <h3 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 leading-none text-white">
                     {item.title}
                   </h3>
-                  <p className={`text-lg md:text-xl font-light leading-relaxed ${dark ? "text-white/50" : "text-black/60"}`}>
+                  <p className="text-lg md:text-xl font-light leading-relaxed text-white/50">
                     {item.desc}
                   </p>
                 </div>

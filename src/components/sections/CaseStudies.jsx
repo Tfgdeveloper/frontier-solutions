@@ -47,7 +47,7 @@ const projects = [
 ];
 
 // ── SINGLE CASE STUDY TILE ──
-function CaseStudyTile({ project, index, gridClass, dark, onEnter, onLeave }) {
+function CaseStudyTile({ project, index, gridClass, onEnter, onLeave }) {
   const wrapRef = useRef(null);
 
   // Scroll-linked parallax: image drifts as the tile passes through the viewport
@@ -68,11 +68,7 @@ function CaseStudyTile({ project, index, gridClass, dark, onEnter, onLeave }) {
       onMouseEnter={() => onEnter(project)}
       onMouseLeave={onLeave}
     >
-      <div
-        className={`relative h-full overflow-hidden rounded-[32px] border transition-colors duration-500 ${
-          dark ? "border-white/10 bg-white/5" : "border-black/10 bg-white"
-        }`}
-      >
+      <div className="relative h-full overflow-hidden rounded-[32px] border transition-colors duration-500 border-white/10 bg-white/5">
         {/* Image with subtle scroll parallax — always visible, no reveal-mask dependency */}
         <motion.div style={{ y: parallaxY }} className="absolute inset-[-10%]">
           <motion.img
@@ -139,7 +135,7 @@ function CaseStudyTile({ project, index, gridClass, dark, onEnter, onLeave }) {
   );
 }
 
-export default function CaseStudies({ dark }) {
+export default function CaseStudies() {
   const [hovered, setHovered] = useState(null);
   const gridRef = useRef(null);
 
@@ -156,11 +152,7 @@ export default function CaseStudies({ dark }) {
   };
 
   return (
-    <section
-      className={`py-24 px-6 md:px-12 transition-colors duration-1000 overflow-hidden relative ${
-        dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
-      }`}
-    >
+    <section className="py-24 px-6 md:px-12 transition-colors duration-1000 overflow-hidden relative bg-transparent">
       {/* Grain overlay */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay">
         <svg width="100%" height="100%">
@@ -182,8 +174,8 @@ export default function CaseStudies({ dark }) {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-3 mb-5"
             >
-              <span className={`block w-8 h-[2px] ${dark ? "bg-orange-500" : "bg-orange-600"}`} />
-              <span className={`text-xs font-bold uppercase tracking-[0.35em] ${dark ? "text-orange-500" : "text-orange-600"}`}>
+              <span className="block w-8 h-[2px] bg-orange-500" />
+              <span className="text-xs font-bold uppercase tracking-[0.35em] text-orange-500">
                 Selected work
               </span>
             </motion.div>
@@ -193,9 +185,7 @@ export default function CaseStudies({ dark }) {
                 whileInView={{ y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className={`text-6xl md:text-[4rem] font-bold tracking-tight leading-[0.9] ${
-                  dark ? "text-white" : "text-[#262262]"
-                }`}
+                className="text-6xl md:text-[4rem] font-bold tracking-tight leading-[0.9] text-white"
               >
                 Discover Our <br /> Case <span className="text-[#F06A22]">Studies</span>
               </motion.h2>
@@ -207,7 +197,7 @@ export default function CaseStudies({ dark }) {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className={`max-w-xs text-sm leading-relaxed ${dark ? "text-white/50" : "text-black/50"}`}
+            className="max-w-xs text-sm leading-relaxed text-white/50"
           >
             {String(projects.length).padStart(2, "0")} projects across fintech, SaaS, D2C and hospitality — hover any tile to take a closer look.
           </motion.p>
@@ -244,7 +234,6 @@ export default function CaseStudies({ dark }) {
                 project={project}
                 index={index}
                 gridClass={gridClass}
-                dark={dark}
                 onEnter={setHovered}
                 onLeave={() => setHovered(null)}
               />

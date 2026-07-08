@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-function ParticleField({ dark }) {
+function ParticleField() {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: null, y: null });
   const particlesRef = useRef([]);
@@ -37,8 +37,8 @@ function ParticleField({ dark }) {
       phase: Math.random() * Math.PI * 2,
     }));
 
-    const dotColor = dark ? "255, 255, 255" : "38, 34, 98";
-    const lineColor = dark ? "255, 180, 120" : "38, 34, 98";
+    const dotColor = "255, 255, 255";
+    const lineColor = "255, 180, 120";
 
     const handleMove = (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -116,7 +116,7 @@ function ParticleField({ dark }) {
       window.removeEventListener("mouseout", handleLeave);
       window.removeEventListener("resize", resize);
     };
-  }, [dark]);
+  }, []);
 
   return (
     <canvas
@@ -128,7 +128,6 @@ function ParticleField({ dark }) {
 }
 
 export default function PageHero({
-  dark = false,
   eyebrow = "",
   title = "",
   description = "",
@@ -137,13 +136,9 @@ export default function PageHero({
 }) {
   return (
     <>
-    <section
-      className={`relative w-full overflow-hidden transition-colors duration-1000 pt-40 pb-20 md:pt-48 md:pb-28 ${
-        dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
-      }`}
-    >
+    <section className="relative w-full overflow-hidden transition-colors duration-1000 pt-40 pb-20 md:pt-48 md:pb-28 bg-transparent">
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        <ParticleField dark={dark} />
+        <ParticleField />
       </div>
 
       
@@ -161,9 +156,7 @@ export default function PageHero({
       {/* ── FAINT CORNER GLOW (much smaller/quieter than homepage orb) ── */}
       <div
         aria-hidden
-        className={`absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full blur-[120px] opacity-30 pointer-events-none ${
-          dark ? "bg-orange-900" : "bg-orange-100"
-        }`}
+        className="absolute -top-40 -right-40 w-[420px] h-[420px] rounded-full blur-[120px] opacity-30 pointer-events-none bg-orange-900"
       />
 
       <div className="relative z-10 w-full max-w-[1600px] mx-auto px-6 md:px-12">
@@ -174,21 +167,19 @@ export default function PageHero({
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className={`flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] mb-10 ${
-              dark ? "text-white/40" : "text-black/40"
-            }`}
+            className="flex items-center gap-2 text-xs font-medium uppercase tracking-[0.25em] mb-10 text-white/40"
           >
             {breadcrumbs.map((crumb, i) => (
               <span key={i} className="flex items-center gap-2">
                 {crumb.href ? (
                   <a
                     href={crumb.href}
-                    className={`transition-colors hover:${dark ? "text-white" : "text-black"}`}
+                    className="transition-colors hover:text-white"
                   >
                     {crumb.label}
                   </a>
                 ) : (
-                  <span className={dark ? "text-orange-500" : "text-orange-600"}>{crumb.label}</span>
+                  <span className="text-orange-500">{crumb.label}</span>
                 )}
                 {i < breadcrumbs.length - 1 && <span>/</span>}
               </span>
@@ -204,12 +195,8 @@ export default function PageHero({
             transition={{ duration: 0.7, delay: 0.1 }}
             className="flex items-center gap-4 mb-6"
           >
-            <span className={`block w-10 h-[1px] ${dark ? "bg-orange-500" : "bg-orange-600"}`} />
-            <span
-              className={`text-xs md:text-sm font-bold uppercase tracking-[0.4em] ${
-                dark ? "text-orange-500" : "text-orange-600"
-              }`}
-            >
+            <span className="block w-10 h-[1px] bg-orange-500" />
+            <span className="text-xs md:text-sm font-bold uppercase tracking-[0.4em] text-orange-500">
               {eyebrow}
             </span>
           </motion.div>
@@ -221,9 +208,7 @@ export default function PageHero({
             initial={{ clipPath: "inset(0 100% 0 0)" }}
             animate={{ clipPath: "inset(0 0% 0 0)" }}
             transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-            className={`text-[clamp(2.75rem,9vw,6.5rem)] font-extrabold leading-[0.95] tracking-tight ${
-              dark ? "text-white" : "text-[#262262]"
-            }`}
+            className="text-[clamp(2.75rem,9vw,6.5rem)] font-extrabold leading-[0.95] tracking-tight text-white"
           >
             {title}
           </motion.h1>
@@ -235,9 +220,7 @@ export default function PageHero({
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className={`mt-8 max-w-xl text-base md:text-lg font-light leading-relaxed ${
-              dark ? "text-white/70" : "text-black/70"
-            }`}
+            className="mt-8 max-w-xl text-base md:text-lg font-light leading-relaxed text-white/70"
           >
             {description}
           </motion.p>
@@ -253,11 +236,9 @@ export default function PageHero({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className={`relative z-10 border-y ${
-            dark ? "border-white/10 bg-[#0A0A0B]" : "border-black/10 bg-[#F9F9F9]"
-          }`}
+          className="relative z-10 border-y border-white/10 bg-transparent"
         >
-          <Marquee dark={dark} tags={tags} />
+          <Marquee tags={tags} />
         </motion.div>
       )}
     </div>
@@ -266,7 +247,7 @@ export default function PageHero({
 }
 
 // ── MARQUEE: infinite scrolling ticker of keywords ──
-function Marquee({ dark, tags }) {
+function Marquee({ tags }) {
   const trackRef = useRef(null);
 
   // Duplicate the tag list so the loop is seamless
@@ -283,12 +264,10 @@ function Marquee({ dark, tags }) {
         {loopTags.map((tag, i) => (
           <span
             key={i}
-            className={`flex items-center gap-8 md:gap-12 text-sm md:text-base font-semibold uppercase tracking-[0.3em] whitespace-nowrap ${
-              dark ? "text-white/50" : "text-black/50"
-            }`}
+            className="flex items-center gap-8 md:gap-12 text-sm md:text-base font-semibold uppercase tracking-[0.3em] whitespace-nowrap text-white/50"
           >
             {tag}
-            <span className={dark ? "text-orange-500" : "text-orange-600"}>&bull;</span>
+            <span className="text-orange-500">&bull;</span>
           </span>
         ))}
       </motion.div>

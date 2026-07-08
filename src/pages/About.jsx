@@ -12,7 +12,7 @@ const About = () => {
 
       
   return (
-    <>
+    <div className='bg-[linear-gradient(100deg,_#1F1A4A_0%,_#8C4343_50%,_#E0531A_100%)]'>
     <Header dark={dark} toggleDark={() => setDark(!dark)} />
       <PageHero
         dark={dark}
@@ -25,19 +25,10 @@ const About = () => {
 
         <section 
       className={`relative w-full overflow-hidden z-0 transition-colors duration-1000 ${
-        dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
+        dark ? "bg-transaprent" : "bg-transaprent"
       }`}
     >
-      {/* ── OPTIONAL: SIGNATURE GRAIN (To match your other sections) ── */}
-      <div className="absolute inset-0 z-[1] pointer-events-none opacity-[0.4] mix-blend-overlay">
-        <svg width="100%" height="100%">
-          <filter id="mission-noise">
-            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="3" />
-            <feColorMatrix type="saturate" values="0" />
-          </filter>
-          <rect width="100%" height="100%" filter="url(#mission-noise)" />
-        </svg>
-      </div>
+     
 
       <div className="max-w-[1600px] mx-auto px-4 md:px-8 pt-24 pb-16 overflow-hidden relative z-10">
         <div className="relative z-20 max-w-5xl mx-auto">
@@ -45,11 +36,11 @@ const About = () => {
           {/* Heading - Dynamic Color */}
           <h2
             className={`text-[34px] md:text-[56px] font-bold [word-spacing:-8px] md:[word-spacing:-14px] text-center leading-tight transition-colors duration-1000 ${
-              dark ? "text-white" : "text-black"
+              dark ? "text-white" : "text-white"
             }`}
           >
-            One-Stop Solution for All Your <br className="hidden md:block" /> 
-            <span className={dark ? "text-orange-500" : "text-[#F06A22]"}>Publishing Needs</span>
+            About Frontier  <br className="hidden md:block" /> 
+            <span className={dark ? "text-orange-500" : "text-orange-500"}>Solutions</span>
           </h2>
 
           {/* Text Content - Dynamic Color */}
@@ -60,19 +51,10 @@ const About = () => {
               baseRotation={0}
               blurStrength={8}
               textClassName={`mt-10 text-center text-lg md:text-xl leading-relaxed transition-colors duration-1000 ${
-            dark ? "text-white/70" : "text-black/70"
+            dark ? "text-white/70" : "text-white/70"
           }`}
             >
-              At Seawings Publications, we believe every story deserves to take flight. 
-              Our mission is to help authors transform their ideas into beautifully crafted 
-              books through professional editing, design, publishing, and global distribution. 
-              With creativity and care, we make the publishing process seamless, turning 
-              inspiration into a finished book ready to reach readers worldwide. 
-              We work closely with every author to ensure their vision shines on every page. 
-              From layout and cover design to marketing and platform distribution across 
-              Amazon, IngramSpark, Barnes & Noble, Kobo, and Apple Books, Seawings 
-              Publications is your trusted partner in every step of the journey. 
-              Your story has wings, we help it find the sky it was meant for.
+              At Frontier Solutions, we believe technology should do more than solve problems—it should create opportunities. We partner with ambitious startups, growing businesses, and established enterprises to build digital products that are scalable, intelligent, and designed for long-term success.Our team combines strategy, creativity, and engineering excellence to transform ideas into high-performance software. From custom web platforms and mobile applications to AI-powered automation, cloud infrastructure, and digital experiences, every solution we deliver is tailored to our clients' unique goals.
             </ScrollReveal>
          
 
@@ -87,7 +69,7 @@ const About = () => {
         <ProcessTimeline2 dark={dark}/>
       <Footer dark={dark} toggleDark={() => setDark(!dark)} />
       {/* Add your team, story, values sections here */}
-    </>
+    </div>
   );
 }
 

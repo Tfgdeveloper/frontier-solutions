@@ -17,7 +17,7 @@ const projects = [
 ];
 
 // SINGLE PROJECT TILE - same tile design as the homepage teaser, for visual consistency
-function ProjectTile({ project, index, gridClass, dark, onEnter, onLeave }) {
+function ProjectTile({ project, index, gridClass, onEnter, onLeave }) {
   const wrapRef = useRef(null);
   const { scrollYProgress } = useScroll({ target: wrapRef, offset: ["start end", "end start"] });
   const parallaxY = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
@@ -34,7 +34,7 @@ function ProjectTile({ project, index, gridClass, dark, onEnter, onLeave }) {
       onMouseEnter={() => onEnter(project)}
       onMouseLeave={onLeave}
     >
-      <div className={`relative h-full overflow-hidden rounded-[32px] border transition-colors duration-500 ${dark ? "border-white/10 bg-white/5" : "border-black/10 bg-white"}`}>
+      <div className="relative h-full overflow-hidden rounded-[32px] border transition-colors duration-500 border-white/10 bg-white/5">
         <motion.div style={{ y: parallaxY }} className="absolute inset-[-10%]">
           <motion.img
             src={encodeURI(project.image)}
@@ -87,7 +87,7 @@ function ProjectTile({ project, index, gridClass, dark, onEnter, onLeave }) {
   );
 }
 
-export default function PortfolioGrid({ dark }) {
+export default function PortfolioGrid() {
   const [hovered, setHovered] = useState(null);
   const gridRef = useRef(null);
 
@@ -103,7 +103,7 @@ export default function PortfolioGrid({ dark }) {
   };
 
   return (
-    <section className={`py-20 md:py-24 px-6 md:px-12 transition-colors duration-1000 overflow-hidden relative ${dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"}`}>
+    <section className="py-20 md:py-24 px-6 md:px-12 transition-colors duration-1000 overflow-hidden relative bg-trnasparent">
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none mix-blend-overlay">
         <svg width="100%" height="100%">
           <filter id="noise2">
@@ -116,14 +116,14 @@ export default function PortfolioGrid({ dark }) {
       <div className="max-w-[1400px] mx-auto relative z-10">
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div className="text-left">
-            <span className={`text-xs font-bold uppercase tracking-[0.35em] ${dark ? "text-orange-500" : "text-orange-600"}`}>
+            <span className="text-xs font-bold uppercase tracking-[0.35em] text-orange-500">
               Full portfolio
             </span>
-            <h2 className={`text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mt-4 ${dark ? "text-white" : "text-[#262262]"}`}>
+            <h2 className="text-4xl md:text-6xl font-bold tracking-tight leading-[0.95] mt-4 text-white">
               Every project, <span className="text-[#F06A22]">start to finish.</span>
             </h2>
           </div>
-          <p className={`max-w-xs text-sm leading-relaxed ${dark ? "text-white/50" : "text-black/50"}`}>
+          <p className="max-w-xs text-sm leading-relaxed text-white/50">
             {String(projects.length).padStart(2, "0")} projects — hover any tile to take a closer look.
           </p>
         </div>
@@ -166,7 +166,6 @@ export default function PortfolioGrid({ dark }) {
                   project={project}
                   index={index}
                   gridClass={gridClass}
-                  dark={dark}
                   onEnter={setHovered}
                   onLeave={() => setHovered(null)}
                 />

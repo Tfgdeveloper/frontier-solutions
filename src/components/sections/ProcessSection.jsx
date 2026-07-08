@@ -14,7 +14,7 @@ const steps = [
 
 const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten"];
 
-const StepCard = ({ step, index, dark }) => {
+const StepCard = ({ step, index }) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { margin: "-30% 0px -30% 0px" });
   const [completed, setCompleted] = useState(false);
@@ -43,7 +43,7 @@ const StepCard = ({ step, index, dark }) => {
             borderColor: isDone ? "#F06A22" : "rgba(150,150,150,0.3)",
           }}
           transition={{ duration: 0.4 }}
-          className="relative z-10 w-4 h-4 md:w-6 md:h-6 rounded-full border-2 bg-[#F9F9F9] dark:bg-[#0A0A0B] flex items-center justify-center"
+          className="relative z-10 w-4 h-4 md:w-6 md:h-6 rounded-full border-2 bg-[#0A0A0B] flex items-center justify-center"
         >
           {isDone ? (
             <Check size={10} className="text-white" strokeWidth={3} />
@@ -72,12 +72,8 @@ const StepCard = ({ step, index, dark }) => {
         transition={{ duration: 0.6 }}
         className={`relative w-full p-8 md:p-8 rounded-[30px] border overflow-hidden transition-colors duration-700 ${
           isInView
-            ? dark
-              ? "bg-[#111112] border-[#F06A22] shadow-[0_0_40px_rgba(240,106,34,0.1)]"
-              : "bg-white border-[#F06A22] shadow-xl shadow-orange-500/5"
-            : dark
-            ? "bg-transparent border-white/5"
-            : "bg-transparent border-black/5"
+            ? "bg-[#000]/30 border-[#F06A22]/30 shadow-[0_0_40px_rgba(240,106,34,0.1)]"
+            : "bg-transparent border-white/5"
         }`}
       >
         {/* Ghost numeral watermark */}
@@ -87,7 +83,7 @@ const StepCard = ({ step, index, dark }) => {
             isInView ? "opacity-100" : "opacity-0"
           }`}
           style={{
-            WebkitTextStroke: dark ? "1px rgba(255,255,255,0.08)" : "1px rgba(0,0,0,0.06)",
+            WebkitTextStroke: "1px rgba(255,255,255,0.08)",
             fontSize: "6rem",
             lineHeight: 1,
           }}
@@ -99,10 +95,10 @@ const StepCard = ({ step, index, dark }) => {
           <span className={`font-mono text-sm font-bold ${isDone ? "text-orange-500" : "text-gray-400"}`}>
             {step.id}
           </span>
-          <div className={`h-[1px] w-8 ${isDone ? "bg-orange-500" : "bg-gray-300 dark:bg-gray-800"}`} />
+          <div className={`h-[1px] w-8 ${isDone ? "bg-orange-500" : "bg-gray-800"}`} />
           <span
             className={`text-[10px] uppercase tracking-[0.3em] font-bold ${
-              isInView ? "text-orange-500" : completed ? "text-gray-400" : "text-gray-300 dark:text-gray-600"
+              isInView ? "text-orange-500" : completed ? "text-gray-400" : "text-gray-600"
             }`}
           >
             Phase // {status}
@@ -111,7 +107,7 @@ const StepCard = ({ step, index, dark }) => {
 
         <h3
           className={`relative text-2xl md:text-3xl font-black mb-2 tracking-tighter transition-colors duration-500 ${
-            isInView ? (dark ? "text-white" : "text-[#262262]") : completed ? (dark ? "text-white/70" : "text-[#262262]/60") : "text-gray-300 dark:text-gray-800"
+            isInView ? "text-white" : completed ? "text-white/70" : "text-gray-800"
           }`}
         >
           {step.title}
@@ -119,7 +115,7 @@ const StepCard = ({ step, index, dark }) => {
 
         <p
           className={`relative max-w-xl text-sm md:text-base leading-relaxed transition-colors duration-500 ${
-            isInView ? (dark ? "text-white/60" : "text-gray-600") : "text-gray-200 dark:text-gray-900"
+            isInView ? "text-white/60" : "text-gray-900"
           }`}
         >
           {step.desc}
@@ -129,7 +125,7 @@ const StepCard = ({ step, index, dark }) => {
   );
 };
 
-export default function ProcessTimeline({ dark }) {
+export default function ProcessTimeline() {
   const containerRef = useRef(null);
 
   // Scroll progress for the filling line + the traveling marker
@@ -144,23 +140,21 @@ export default function ProcessTimeline({ dark }) {
   const progressLabel = useTransform(scrollYProgress, (v) => `${Math.round(Math.min(Math.max(v, 0), 1) * 100)}%`);
 
   return (
-    <section className={`py-10 px-4 transition-colors duration-1000 ${dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"}`}>
+    <section className="py-10 px-4 transition-colors duration-1000 bg-transparent">
       <div className="max-w-7xl mx-auto overflow-visible">
         {/* Header */}
         <div className="mb-24 flex flex-col md:flex-row md:items-end justify-between gap-6 text-left">
-          <h2 className={`text-5xl md:text-[4rem] font-black tracking-tighter leading-none ${dark ? "text-white" : "text-[#262262]"}`}>
+          <h2 className="text-5xl md:text-[4rem] font-black tracking-tighter leading-none text-white">
             {NUMBER_WORDS[steps.length] || steps.length} milestones. <br />
             <span className="text-[#F06A22]">Predictable as a metronome.</span>
           </h2>
 
           {/* Live scroll-synced progress readout */}
           <div className="flex items-center gap-3 shrink-0">
-            <span className={`text-xs uppercase tracking-[0.3em] font-bold ${dark ? "text-white/40" : "text-black/40"}`}>
+            <span className="text-xs uppercase tracking-[0.3em] font-bold text-white/40">
               Journey mapped
             </span>
-            <motion.span
-              className={`font-mono text-2xl font-bold tabular-nums ${dark ? "text-white" : "text-[#262262]"}`}
-            >
+            <motion.span className="font-mono text-2xl font-bold tabular-nums text-white">
               {progressLabel}
             </motion.span>
           </div>
@@ -169,7 +163,7 @@ export default function ProcessTimeline({ dark }) {
         {/* ── THE TIMELINE ── */}
         <div ref={containerRef} className="relative">
           {/* Vertical Progress Line (Base) */}
-          <div className={`absolute left-[7px] md:left-[11px] top-0 bottom-0 w-[2px] ${dark ? "bg-white/5" : "bg-black/5"}`} />
+          <div className="absolute left-[7px] md:left-[11px] top-0 bottom-0 w-[2px] bg-white/5" />
 
           {/* Vertical Progress Line (Active Fill) */}
           <motion.div
@@ -194,7 +188,7 @@ export default function ProcessTimeline({ dark }) {
 
           <div className="flex flex-col">
             {steps.map((step, index) => (
-              <StepCard key={step.id} step={step} index={index} dark={dark} />
+              <StepCard key={step.id} step={step} index={index} />
             ))}
           </div>
         </div>

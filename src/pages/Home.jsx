@@ -17,7 +17,7 @@ const Home = () => {
     const [dark, setDark] = useState(false);
   
   return (
-    <div>
+    <div className='bg-[linear-gradient(100deg,_#1F1A4A_0%,_#8C4343_50%,_#E0531A_100%)]'> 
       <Header dark={dark} toggleDark={() => setDark(!dark)} />
       <HeroSection dark={dark}/>  
       <LogoLoop dark={dark}/>

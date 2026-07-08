@@ -55,7 +55,7 @@ const services = [
 ];
 
 // ── SINGLE CARD: isolated so each instance owns its own tilt/hover motion values ──
-function ServiceCard({ service, index, dark }) {
+function ServiceCard({ service, index }) {
   const cardRef = useRef(null);
 
   const rotateX = useMotionValue(0);
@@ -160,7 +160,7 @@ function ServiceCard({ service, index, dark }) {
   );
 }
 
-export default function ServicesSlider({ dark }) {
+export default function ServicesSlider() {
   const scrollRef = useRef(null);
   const [progress, setProgress] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -218,11 +218,7 @@ export default function ServicesSlider({ dark }) {
   const onPointerUp = () => setIsDragging(false);
 
   return (
-    <section
-      className={`py-24 transition-colors duration-1000 ${
-        dark ? "bg-[#0A0A0B] text-white" : "bg-[#F9F9F9] text-[#262262]"
-      }`}
-    >
+    <section className="py-24 transition-colors duration-1000 bg-transparent text-white">
       <div className="max-w-[1600px] mx-auto px-6 md:px-12">
         {/* ── HEADER ── */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8">
@@ -236,14 +232,14 @@ export default function ServicesSlider({ dark }) {
             <h2 className="text-5xl md:text-[4rem] font-bold tracking-tight mb-6">
               Services and <br /> <span className="text-[#F06A22]">solutions</span> we offer.
             </h2>
-            <p className={`text-lg max-w-lg leading-relaxed ${dark ? "text-gray-400" : "text-gray-600"}`}>
+            <p className="text-lg max-w-lg leading-relaxed text-gray-400">
               We work with creative teams and ambitious founders to turn vision into product — with intuitive UX, standout visuals, and seamless digital experiences.
             </p>
           </motion.div>
 
           {/* Counter + Navigation */}
           <div className="flex items-center gap-6 md:mt-40">
-            <div className={`text-sm font-semibold tracking-widest tabular-nums ${dark ? "text-white/50" : "text-black/50"}`}>
+            <div className="text-sm font-semibold tracking-widest tabular-nums text-white/50">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={Math.max(1, Math.round(progress * (services.length - 1)) + 1)}
@@ -251,7 +247,7 @@ export default function ServicesSlider({ dark }) {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 6 }}
                   transition={{ duration: 0.25 }}
-                  className={dark ? "text-white" : "text-[#262262]"}
+                  className="text-white"
                 >
                   {String(Math.round(progress * (services.length - 1)) + 1).padStart(2, "0")}
                 </motion.span>
@@ -263,9 +259,7 @@ export default function ServicesSlider({ dark }) {
               <button
                 onClick={() => scroll("left")}
                 aria-label="Scroll left"
-                className={`w-14 h-14 rounded-full flex items-center justify-center border transition-all ${
-                  dark ? "border-white/10 hover:bg-white/10" : "border-black/10 hover:bg-black/5"
-                }`}
+                className="w-14 h-14 rounded-full flex items-center justify-center border transition-all border-white/10 hover:bg-white/10"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -274,9 +268,7 @@ export default function ServicesSlider({ dark }) {
               <button
                 onClick={() => scroll("right")}
                 aria-label="Scroll right"
-                className={`w-14 h-14 rounded-full flex items-center justify-center transition-all ${
-                  dark ? "bg-white text-black hover:bg-gray-200" : "bg-black text-white hover:bg-gray-800"
-                }`}
+                className="w-14 h-14 rounded-full flex items-center justify-center transition-all bg-white text-black hover:bg-gray-200"
               >
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14m-7 7l7-7-7-7" />
@@ -299,12 +291,12 @@ export default function ServicesSlider({ dark }) {
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {services.map((service, index) => (
-            <ServiceCard key={service.title} service={service} index={index} dark={dark} />
+            <ServiceCard key={service.title} service={service} index={index} />
           ))}
         </div>
 
         {/* ── PROGRESS BAR (synced to actual scroll position) ── */}
-        <div className={`relative mt-4 h-[2px] rounded-full overflow-hidden ${dark ? "bg-white/10" : "bg-black/10"}`}>
+        <div className="relative mt-4 h-[2px] rounded-full overflow-hidden bg-white/10">
           <motion.div
             className="absolute inset-y-0 left-0 bg-[#F06A22] rounded-full"
             animate={{ width: `${Math.max(progress * 100, 6)}%` }}

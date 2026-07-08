@@ -3,8 +3,6 @@ import { motion, useMotionValue, useSpring, useTransform, AnimatePresence } from
 import { ArrowUp } from "lucide-react";
 import GradientButton from "../ui/GradientButton";
 
-// ── LIVE OFFICE CLOCK: ties directly to "Based in Dubai & Paris" copy ──
-
 // ── LINK: underline draws in on hover ──
 function FooterLink({ href, children }) {
   return (
@@ -24,7 +22,7 @@ const colItem = {
   shown: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
 };
 
-export default function Footer({ dark }) {
+export default function Footer() {
   const currentYear = new Date().getFullYear();
   const containerRef = useRef(null);
   const [showTop, setShowTop] = useState(false);
@@ -56,7 +54,7 @@ export default function Footer({ dark }) {
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   return (
-    <footer className={`relative pt-20 pb-10 transition-colors duration-1000 ${dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"}`}>
+    <footer className="relative pt-20 pb-10 transition-colors duration-1000 bg-transparent">
       <div className="max-w-[1600px] mx-auto px-6 mb-24">
         <motion.div
           ref={containerRef}
@@ -64,21 +62,21 @@ export default function Footer({ dark }) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className={`relative w-full rounded-[60px] overflow-hidden group flex flex-col items-center justify-center p-10 transition-shadow duration-700 shadow-2xl ${
-            dark ? "bg-[#0A0A0B] shadow-orange-950/20 border border-white/5" : "bg-[#F3F4F6] shadow-indigo-900/10 border border-black/5"
-          }`}
+          className="relative w-full rounded-[60px] overflow-hidden group flex flex-col items-center justify-center p-10 transition-shadow duration-700 shadow-2xl 
+            bg-[#0A0A0B] shadow-orange-950/20 border border-white/5"
+      
         >
           {/* ── BACKGROUND ── */}
           <div className="absolute inset-0 pointer-events-none overflow-hidden">
             <motion.div
               animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
               transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
-              className={`absolute top-[-10%] left-[-10%] w-[60%] h-[70%] rounded-full blur-[120px] opacity-40 ${dark ? "bg-[#262262]" : "bg-indigo-200"}`}
+              className="absolute top-[-10%] left-[-10%] w-[60%] h-[70%] rounded-full blur-[120px] opacity-40 bg-[#262262] "
             />
             <motion.div
               animate={{ scale: [1, 1.3, 1], rotate: [0, -90, 0] }}
               transition={{ duration: 18, repeat: Infinity, ease: "linear" }}
-              className={`absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[140px] opacity-30 ${dark ? "bg-[#F06A22]" : "bg-orange-200"}`}
+              className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[60%] rounded-full blur-[140px] opacity-30 bg-[#F06A22]"
             />
             <motion.div
               className="absolute z-10 w-[600px] h-[600px] rounded-full opacity-60"
@@ -87,9 +85,7 @@ export default function Footer({ dark }) {
                 top: spotlightY,
                 translateX: "-50%",
                 translateY: "-50%",
-                background: dark
-                  ? "radial-gradient(circle, rgba(240, 106, 34, 0.15) 0%, transparent 70%)"
-                  : "radial-gradient(circle, rgba(38, 34, 98, 0.1) 0%, transparent 70%)",
+                background: "radial-gradient(circle, rgba(240, 106, 34, 0.15) 0%, transparent 70%)",
                 filter: "blur(60px)",
               }}
             />
@@ -108,12 +104,12 @@ export default function Footer({ dark }) {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className={`text-[10px] md:text-[12px] uppercase font-semibold mb-6 block ${dark ? "text-orange-500" : "text-[#F06A22]"}`}
+              className="text-[10px] md:text-[12px] uppercase font-semibold mb-6 block text-orange-500"
             >
               Ready for your next frontier?
             </motion.span>
 
-            <h2 className={`text-5xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-4 ${dark ? "text-white" : "text-[#262262]"}`}>
+            <h2 className="text-5xl md:text-8xl font-black tracking-tighter leading-[0.85] mb-4 text-white">
               Growth without <br /> limits
               <motion.span
                 animate={{ opacity: [1, 0.3, 1] }}
@@ -124,7 +120,7 @@ export default function Footer({ dark }) {
               </motion.span>
             </h2>
 
-            <p className={`text-lg md:text-xl font-medium max-w-2xl mx-auto mb-6 leading-relaxed ${dark ? "text-white/50" : "text-black/50"}`}>
+            <p className="text-lg md:text-xl font-medium max-w-2xl mx-auto mb-6 leading-relaxed text-white/50">
               Scale your digital presence today. We combine engineering excellence with brand intuition to build your future.
             </p>
 
@@ -146,23 +142,20 @@ export default function Footer({ dark }) {
         {/* Brand Column */}
         <motion.div variants={colItem} className="md:col-span-6 max-w-full space-y-6">
           <img
-            src={dark ? "images/Frontier Solution Final File-01.png" : "images/Frontier Solution Final File-03.png"}
+            src="images/Frontier Solution Final File-01.png"
             alt="Frontier Solution"
             className="h-15 md:h-18 w-auto object-contain transition-all duration-500"
           />
-          <p className={`max-w-sm text-md ${dark ? "text-white/60 font-thin" : "text-black"}`}>
+          <p className="max-w-sm text-md text-white/60 font-thin">
             Based in Dubai & Paris. We engineer high-performance visual ecosystems for market leaders.
           </p>
-
-          {/* Live office clocks — genuinely tied to the copy above, not decorative */}
-          
         </motion.div>
 
         {/* Links Columns */}
         <div className="md:col-span-6 grid grid-cols-2 lg:grid-cols-3 gap-2">
           <motion.div variants={colItem} className="space-y-6">
-            <h4 className={`text-[14px] uppercase font-thin ${dark ? "text-white" : "text-black"}`}>Main</h4>
-            <ul className={`text-md font-thin space-y-4 ${dark ? "text-white/60 font-thin" : "text-black"}`}>
+            <h4 className="text-[14px] uppercase font-thin text-white">Main</h4>
+            <ul className="text-md font-thin space-y-4 text-white/60">
               <li><FooterLink href="/">Home</FooterLink></li>
               <li><FooterLink href="/about">About</FooterLink></li>
               <li><FooterLink href="/services">Services</FooterLink></li>
@@ -172,8 +165,8 @@ export default function Footer({ dark }) {
           </motion.div>
 
           <motion.div variants={colItem} className="space-y-6">
-            <h4 className={`text-[14px] uppercase font-thin ${dark ? "text-white" : "text-black"}`}>Services</h4>
-            <ul className={`text-md font-thin space-y-4 ${dark ? "text-white/60 font-thin" : "text-black"}`}>
+            <h4 className="text-[14px] uppercase font-thin text-white">Services</h4>
+            <ul className="text-md font-thin space-y-4 text-white/60">
               <li><FooterLink href="#">Web Development</FooterLink></li>
               <li><FooterLink href="#">Mobile Apps</FooterLink></li>
               <li><FooterLink href="#">AI & Automation</FooterLink></li>
@@ -185,8 +178,8 @@ export default function Footer({ dark }) {
           </motion.div>
 
           <motion.div variants={colItem} className="space-y-6">
-            <h4 className={`text-[14px] uppercase font-thin ${dark ? "text-white" : "text-black"}`}>Contact Us</h4>
-            <ul className={`text-md font-thin space-y-4 ${dark ? "text-white/60 font-thin" : "text-black"}`}>
+            <h4 className="text-[14px] uppercase font-thin text-white">Contact Us</h4>
+            <ul className="text-md font-thin space-y-4 text-white/60">
               <li><FooterLink href="mailto:hello@frontier-solution.pk">hello@frontier-solution.pk</FooterLink></li>
               <li><FooterLink href="#">43/M, 43rd Street, PECHS Block 6, Karachi, Pakistan</FooterLink></li>
             </ul>
@@ -195,9 +188,9 @@ export default function Footer({ dark }) {
       </motion.div>
 
       {/* ── FOOTER BOTTOM ── */}
-      <div className={`max-w-[1600px] mx-auto px-10 md:px-20 pt-5 border-t ${dark ? "border-white/5" : "border-black/5"}`}>
+      <div className="max-w-[1600px] mx-auto px-10 md:px-20 pt-5 border-t border-white/5">
         <div className="flex flex-col md:flex-row justify-center items-center">
-          <p className={`text-[16px] font-thin text-center ${dark ? "text-white/20" : "text-black"}`}>
+          <p className="text-[16px] font-thin text-center text-white/20">
             Copyright © {currentYear} Frontier Solutions Inc. All rights reserved.
           </p>
         </div>
@@ -215,9 +208,7 @@ export default function Footer({ dark }) {
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.92 }}
             aria-label="Back to top"
-            className={`fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center border shadow-lg ${
-              dark ? "bg-white text-black border-white/10" : "bg-[#262262] text-white border-black/5"
-            }`}
+            className="fixed bottom-8 right-8 z-40 w-12 h-12 rounded-full flex items-center justify-center border shadow-lg bg-white text-black border-white/10"
           >
             <ArrowUp size={18} />
           </motion.button>

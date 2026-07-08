@@ -16,7 +16,7 @@ const duplicatedLogos = [...logos, ...logos, ...logos];
 export default function LogoCarousel({ dark }) {
   return (
     <div className={`relative py-8 overflow-hidden transition-colors duration-1000 ${
-      dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
+      dark ? "bg-tranaprent" : "bg-tranaprent"
     }`}>
       
       {/* ── TOP LABEL ── */}
@@ -25,14 +25,9 @@ export default function LogoCarousel({ dark }) {
       <div className="relative flex items-center">
         
         {/* Left/Right Fading Gradients (The "Premium" Mask) */}
-        <div className={`absolute left-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-r ${
-          dark ? "from-[#0A0A0B]" : "from-[#F9F9F9]"
-        } to-transparent`} />
+       
         
-        <div className={`absolute right-0 top-0 bottom-0 w-32 z-10 pointer-events-none bg-gradient-to-l ${
-          dark ? "from-[#0A0A0B]" : "from-[#F9F9F9]"
-        } to-transparent`} />
-
+        
         {/* Marquee Motion Container */}
         <motion.div
           className="flex whitespace-nowrap"
@@ -63,9 +58,7 @@ export default function LogoCarousel({ dark }) {
       </div>
 
       {/* ── BOTTOM DIVIDER (Optional Agency Spec) ── */}
-      <div className="max-w-[1600px] mx-auto px-6 mt-8">
-        <div className={`h-[1px] w-full ${dark ? "bg-white/10" : "bg-black/5"}`} />
-      </div>
+      
     </div>
   );
 }

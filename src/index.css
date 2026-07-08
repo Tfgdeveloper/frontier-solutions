@@ -12,7 +12,12 @@
 Then update you
 /* 3. APPLY TO BODY */
 body {
-  background: black;
+  background: linear-gradient(
+  135deg,
+  #1F1A4A 0%,
+  #8C4343 50%,
+  #E0531A 100%
+);
   margin: 0;
   font-family: "Inter Tight", sans-serif;
 }

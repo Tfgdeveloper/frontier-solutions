@@ -106,16 +106,16 @@ const tagItem = {
   shown: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", stiffness: 400, damping: 18 } },
 };
 
-export default function ServicesPageGrid({ dark }) {
+export default function ServicesPageGrid() {
   const [active, setActive] = useState(0);
   const service = SERVICES[active];
 
   return (
-    <section className={`relative py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-1000 ${dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"}`}>
+    <section className="relative py-24 md:py-32 px-6 md:px-12 overflow-hidden transition-colors duration-1000 bg-transparent">
       <div className="max-w-[1500px] mx-auto relative z-10">
         {/* Header */}
         <div className="mb-14 md:mb-16">
-          <h2 className={`text-4xl md:text-6xl font-black tracking-tighter leading-none ${dark ? "text-white" : "text-[#262262]"}`}>
+          <h2 className="text-4xl md:text-6xl font-black tracking-tighter leading-none text-white">
             Ten disciplines.
             <br />
             <span style={{ color: ACCENT }}>One studio.</span>
@@ -134,8 +134,8 @@ export default function ServicesPageGrid({ dark }) {
                 className="shrink-0 flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold whitespace-nowrap border transition-colors"
                 style={{
                   backgroundColor: isActive ? ACCENT : "transparent",
-                  borderColor: isActive ? ACCENT : dark ? "rgba(255,255,255,0.1)" : "rgba(0,0,0,0.1)",
-                  color: isActive ? "#fff" : dark ? "rgba(255,255,255,0.5)" : "rgba(0,0,0,0.5)",
+                  borderColor: isActive ? ACCENT : "rgba(255,255,255,0.1)",
+                  color: isActive ? "#fff" : "rgba(255,255,255,0.5)",
                 }}
               >
                 <s.Icon size={14} />
@@ -170,7 +170,7 @@ export default function ServicesPageGrid({ dark }) {
 
                   <motion.span
                     animate={{
-                      backgroundColor: isActive ? ACCENT : dark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.04)",
+                      backgroundColor: isActive ? ACCENT : "rgba(255,255,255,0.06)",
                       scale: isActive ? 1 : 0.9,
                     }}
                     whileHover={{ rotate: [0, -8, 8, -4, 0], scale: 1.08 }}
@@ -183,12 +183,12 @@ export default function ServicesPageGrid({ dark }) {
                   <span>
                     <span
                       className={`block text-sm font-semibold transition-colors duration-300 ${
-                        isActive ? (dark ? "text-white" : "text-[#262262]") : dark ? "text-white/40" : "text-black/40"
+                        isActive ? "text-white" : "text-white/40"
                       }`}
                     >
                       {s.title}
                     </span>
-                    <span className={`block text-[11px] mt-0.5 ${dark ? "text-white/25" : "text-black/25"}`}>{s.category}</span>
+                    <span className="block text-[11px] mt-0.5 text-white/25">{s.category}</span>
                   </span>
                 </motion.button>
               );
@@ -196,7 +196,7 @@ export default function ServicesPageGrid({ dark }) {
           </nav>
 
           {/* Content panel */}
-          <div className={`relative rounded-[32px] md:rounded-[40px] border p-8 md:p-14 min-h-[440px] overflow-hidden ${dark ? "bg-[#111112] border-white/5" : "bg-[#F9F9F9] border-black/5"}`}>
+          <div className="relative rounded-[32px] md:rounded-[40px] border p-8 md:p-14 min-h-[440px] overflow-hidden bg-[#000]/50 border-white/5">
             {/* Morphing color blob — shifts hue with the active service */}
             <AnimatePresence>
               <motion.div
@@ -236,10 +236,10 @@ export default function ServicesPageGrid({ dark }) {
                 <span className="text-xs font-bold uppercase tracking-[0.25em]" style={{ color: ACCENT }}>
                   {service.category}
                 </span>
-                <h3 className={`text-3xl md:text-5xl font-black tracking-tighter mt-4 mb-6 leading-none ${dark ? "text-white" : "text-[#262262]"}`}>
+                <h3 className="text-3xl md:text-5xl font-black tracking-tighter mt-4 mb-6 leading-none text-white">
                   {service.title}
                 </h3>
-                <p className={`text-base md:text-lg leading-relaxed max-w-2xl mb-10 ${dark ? "text-white/60" : "text-black/60"}`}>
+                <p className="text-base md:text-lg leading-relaxed max-w-2xl mb-10 text-white/60">
                   {service.desc}
                 </p>
 
@@ -250,12 +250,12 @@ export default function ServicesPageGrid({ dark }) {
                         key={s.label}
                         variants={tagItem}
                         whileHover={{ y: -3, scale: 1.03 }}
-                        className={`p-5 rounded-2xl border ${dark ? "bg-white/5 border-white/10" : "bg-white border-black/5"}`}
+                        className="p-5 rounded-2xl border bg-white/5 border-white/10"
                       >
                         <div className="text-2xl font-black leading-none mb-1" style={{ color: ACCENT }}>
                           {s.value}
                         </div>
-                        <div className={`text-[10px] uppercase font-bold tracking-widest ${dark ? "text-white/40" : "text-black/40"}`}>{s.label}</div>
+                        <div className="text-[10px] uppercase font-bold tracking-widest text-white/40">{s.label}</div>
                       </motion.div>
                     ))}
                   </motion.div>
@@ -276,14 +276,12 @@ export default function ServicesPageGrid({ dark }) {
                 )}
 
                 {/* Prev / Next */}
-                <div className="flex items-center gap-3 mt-12 pt-8 border-t border-black/5 dark:border-white/5">
+                <div className="flex items-center gap-3 mt-12 pt-8 border-t border-white/5">
                   <motion.button
                     whileHover={{ scale: 1.05, x: -2 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setActive((active - 1 + SERVICES.length) % SERVICES.length)}
-                    className={`text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border transition-colors ${
-                      dark ? "border-white/10 text-white/50 hover:text-white" : "border-black/10 text-black/50 hover:text-black"
-                    }`}
+                    className="text-xs font-semibold uppercase tracking-widest px-4 py-2 rounded-full border transition-colors border-white/10 text-white/50 hover:text-white"
                   >
                     ← Previous
                   </motion.button>

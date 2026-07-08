@@ -8,7 +8,7 @@ import CaseStudies2 from "../components/sections/CaseStudies2";
 const Work = () => {
   const [dark, setDark] = useState(false);
   return (
-    <>
+    <div className='bg-[linear-gradient(100deg,_#1F1A4A_0%,_#8C4343_50%,_#E0531A_100%)]'>
     <Header dark={dark} toggleDark={() => setDark(!dark)} />
       <PageHero
         dark={dark}
@@ -20,7 +20,7 @@ const Work = () => {
       />
       <CaseStudies2 dark={dark} />
       <Footer dark={dark} toggleDark={() => setDark(!dark)} />
-    </>
+    </div>
   );
 }
 

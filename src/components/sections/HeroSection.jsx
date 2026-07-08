@@ -3,7 +3,7 @@ import { motion, useSpring, useMotionValue, useTransform } from "framer-motion";
 import GradientButton from "../../components/ui/GradientButton";
 
 // ── PARTICLE FIELD (particles.js-style canvas background) ──
-function ParticleField({ dark }) {
+function ParticleField() {
   const canvasRef = useRef(null);
   const mouseRef = useRef({ x: null, y: null });
   const particlesRef = useRef([]);
@@ -39,8 +39,8 @@ function ParticleField({ dark }) {
       phase: Math.random() * Math.PI * 2,
     }));
 
-    const dotColor = dark ? "255, 255, 255" : "38, 34, 98";
-    const lineColor = dark ? "255, 180, 120" : "38, 34, 98";
+    const dotColor = "255, 255, 255";
+    const lineColor = "255, 180, 120";
 
     const handleMove = (e) => {
       const rect = canvas.getBoundingClientRect();
@@ -118,7 +118,7 @@ function ParticleField({ dark }) {
       window.removeEventListener("mouseout", handleLeave);
       window.removeEventListener("resize", resize);
     };
-  }, [dark]);
+  }, []);
 
   return (
     <canvas
@@ -129,7 +129,7 @@ function ParticleField({ dark }) {
   );
 }
 
-function AnimatedO({ dark, delay = 0 }) {
+function AnimatedO({ delay = 0 }) {
   return (
     <motion.span
       className="relative inline-block align-middle"
@@ -143,13 +143,13 @@ function AnimatedO({ dark, delay = 0 }) {
         <circle
           cx="50" cy="50" r="42"
           fill="none"
-          stroke={dark ? "#333" : "#ddd"}
+          stroke="#333"
           strokeWidth="7"
         />
         <motion.circle
           cx="50" cy="50" r="42"
           fill="none"
-          stroke={dark ? "#f97316" : "#262262"}
+          stroke="#f97316"
           strokeWidth="7"
           strokeLinecap="round"
           strokeDasharray={264}
@@ -169,7 +169,7 @@ function AnimatedO({ dark, delay = 0 }) {
         <circle
           cx="50" cy="50" r="42"
           fill="none"
-          stroke={dark ? "#f97316" : "#262262"}
+          stroke="#f97316"
           strokeWidth="2"
           strokeLinecap="round"
           strokeDasharray="8 18"
@@ -182,7 +182,7 @@ function AnimatedO({ dark, delay = 0 }) {
         initial={{ scale: 0, opacity: 0 }}
         animate={{ scale: [0, 1, 1.15, 1], opacity: [0, 1, 0.7, 1] }}
         transition={{ duration: 1.8, delay: delay + 1.2, repeat: Infinity, repeatType: "reverse", repeatDelay: 1 }}
-        className={`absolute inset-[26%] rounded-full ${dark ? "bg-orange-500" : "bg-[#262262]"}`}
+        className="absolute inset-[26%] rounded-full bg-orange-500"
         style={{ filter: "blur(0.5px)" }}
       />
     </motion.span>
@@ -191,12 +191,12 @@ function AnimatedO({ dark, delay = 0 }) {
 
 
 // ── Split text into animated letters ──
-function AnimatedWord({ text, delay = 0, className, dark, animateO = false }) {
+function AnimatedWord({ text, delay = 0, className, animateO = false }) {
   return (
     <span className={`inline-flex items-center overflow-hidden ${className}`}>
       {text.split("").map((char, i) => {
         if (animateO && char === "O") {
-          return <AnimatedO key={i} dark={dark} delay={delay + i * 0.03} />;
+          return <AnimatedO key={i} delay={delay + i * 0.03} />;
         }
         return (
           <motion.span
@@ -216,7 +216,7 @@ function AnimatedWord({ text, delay = 0, className, dark, animateO = false }) {
 
 
 
-export default function HeroSection({ dark }) {
+export default function HeroSection() {
   const containerRef = useRef(null);
 
   // ── MOUSE INTERACTION (CUBERTO STYLE) ──
@@ -243,9 +243,7 @@ export default function HeroSection({ dark }) {
   return (
     <section
       ref={containerRef}
-      className={`relative min-h-screen w-full flex flex-col justify-center overflow-hidden transition-colors duration-1000 py-35 ${
-        dark ? "bg-[#0A0A0B]" : "bg-[#F9F9F9]"
-      }`}
+      className="relative min-h-screen w-full flex flex-col justify-center overflow-hidden transition-colors duration-1000 py-35 bg-transparent"
     >
       {/* ── BACKGROUND: THE "GRAINY LIQUID" ORB ── */}
       <div className="absolute inset-0 z-0 flex items-center justify-center overflow-hidden">
@@ -259,17 +257,13 @@ export default function HeroSection({ dark }) {
             rotate: { duration: 20, repeat: Infinity, ease: "linear" },
             scale: { duration: 8, repeat: Infinity, ease: "easeInOut" },
           }}
-          className={`relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full blur-[100px] opacity-40 ${
-            dark
-            ? "bg-gradient-to-tr from-indigo-900 via-purple-800 to-orange-900"
-            : "bg-gradient-to-tr from-blue-100 via-orange-100 to-purple-100"
-          }`}
+          className="relative w-[600px] h-[600px] md:w-[900px] md:h-[900px] rounded-full blur-[100px] opacity-40 bg-gradient-to-tr from-indigo-900 via-purple-800 to-orange-900"
         />
       </div>
 
       {/* ── PARTICLE FIELD ── */}
       <div className="absolute inset-0 z-[1] pointer-events-none">
-        <ParticleField dark={dark} />
+        <ParticleField />
       </div>
 
       {/* ── TEXTURE: FILM GRAIN OVERLAY ── */}
@@ -292,13 +286,13 @@ export default function HeroSection({ dark }) {
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1 }}
-            className={`text-xs md:text-sm font-bold uppercase tracking-[0.5em] mb-6 ${dark ? "text-orange-500" : "text-orange-600"}`}
+            className="text-xs md:text-sm font-bold uppercase tracking-[0.5em] mb-6 text-orange-500"
           >
             Award Winning Excellence
           </motion.span>
 
-          <h1 className={`text-[clamp(3.5rem,15vw,10rem)] font-extrabold leading-[1] tracking-tighter ${dark ? "text-white" : "text-[#262262]"}`}>
-  <AnimatedWord text="FRONTIER" delay={0.1} dark={dark} animateO />
+          <h1 className="text-[clamp(3.5rem,15vw,10rem)] font-extrabold leading-[1] tracking-tighter text-white">
+  <AnimatedWord text="FRONTIER" delay={0.1} animateO />
 </h1>
         </div>
 
@@ -313,12 +307,10 @@ export default function HeroSection({ dark }) {
               rotate: [0, 90, 180],
             }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className={`hidden lg:block w-32 h-32 rounded-full border ${dark ? "border-white/10" : "border-black/10"}`}
+            className="hidden lg:block w-32 h-32 rounded-full border border-white/10"
           />
 
-          <h1
-            className={`text-[clamp(3.5rem,15vw,10rem)] font-extrabold leading-[0.8] tracking-tighter ${dark ? "text-white" : "text-[#262262]"}`}
-          >
+          <h1 className="text-[clamp(3.5rem,15vw,10rem)] font-extrabold leading-[0.8] tracking-tighter text-white">
             <AnimatedWord text="SOLUTIONS" delay={0.25} />
           </h1>
         </div>
@@ -335,14 +327,12 @@ export default function HeroSection({ dark }) {
             <motion.div
               animate={{ opacity: [0.2, 0.5, 0.2], scale: [0.9, 1.05, 0.9] }}
               transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className={`absolute inset-0 rounded-full blur-2xl -z-10 ${
-                dark ? "bg-orange-500/30" : "bg-orange-400/30"
-              }`}
+              className="absolute inset-0 rounded-full blur-2xl -z-10 bg-orange-500/30"
             />
             <GradientButton />
           </div>
 
-          <p className={`max-w-md text-base md:text-xl font-light leading-relaxed ${dark ? "text-white" : "text-black"}`}>
+          <p className="max-w-md text-base md:text-xl font-light leading-relaxed text-white">
             A hybrid digital engine specializing in high-end experiences performance advertising, and brand identity
           </p>
         </motion.div>
@@ -354,7 +344,7 @@ export default function HeroSection({ dark }) {
          transition={{ repeat: Infinity, duration: 2 }}
          className="absolute bottom-10 left-1/2 -translate-x-1/2 z-10"
       >
-        <div className={`w-[1px] h-20 ${dark ? "bg-gradient-to-b from-white/40 to-transparent" : "bg-gradient-to-b from-black/40 to-transparent"}`} />
+        <div className="w-[1px] h-20 bg-gradient-to-b from-white/40 to-transparent" />
       </motion.div>
     </section>
   );
